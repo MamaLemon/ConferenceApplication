@@ -1,10 +1,8 @@
 package com.mama1emon.conference.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.swing.*;
+import java.util.List;
 
 @Entity(name = "speakers")
 public class Speaker {
@@ -16,7 +14,19 @@ public class Speaker {
     Spring title;
     Spring company;
     Spring speaker_bio;
+
+    @ManyToMany(mappedBy = "speakers")
+    List<Session> sessions;
+
     public Speaker() {
+    }
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
     }
 
     public Long getSpeaker_id() {
